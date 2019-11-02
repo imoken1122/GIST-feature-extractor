@@ -11,12 +11,12 @@ The folloing liblaries are required to be installed
 
 ## Usage
 
-1. Installation
+__1. Installation__
 ```
 $ git clone https://github.com/imoken1122/GIST-feature.git
 ```
 
-2. Use GIST-feature extractor
+__2. Use GIST-feature extractor__
 
 Change these parameters if necessary and Specify the path where the image is located
 ```python
