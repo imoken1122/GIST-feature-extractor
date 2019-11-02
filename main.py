@@ -8,7 +8,7 @@ param = {
         "boundaryExtension": 20
         
 }
-path = ""
+path = f"./image/{}"
 img = np.array(Image.open(path).convert("L"))
 gist = _gist_extract(img, param)
 print(gist)
