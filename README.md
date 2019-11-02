@@ -1,4 +1,4 @@
-# GIST-feature
+# GIST-feature-extractor
 This repository is a reimplementation Matlab code implemented in this paper [Modeling the shape of the scene: a holistic representation of the spatial envelope](http://people.csail.mit.edu/torralba/code/spatialenvelope/) in Python.
 
 __Images that can be used in this repository are still only grayscale images. (W × H × 1)__
