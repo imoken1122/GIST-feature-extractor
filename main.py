@@ -33,10 +33,11 @@ class Dataloader():
 			path = f"./{self.input_path}"
 			return [path]
 	def save_feature(self,x:np.array):
+		c = x.shape[1]
 		if self.is_dir:
-			gist_df = pd.DataFrame(x, columns = [f"gist_{i}" for i in range(len(x))])
+			gist_df = pd.DataFrame(x, columns = [f"gist_{i}" for i in range(c)])
 		else:
-			gist_df = pd.DataFrame(x.reshape(1,-1), columns = [f"gist_{i}" for i in range(len(x))])
+			gist_df = pd.DataFrame(x.reshape(1,-1), columns = [f"gist_{i}" for i in range(c)])
 
 		gist_df.to_feather(f"./{self.output_path}")	
 
@@ -47,7 +48,7 @@ def _get_gist(param,file_list):
 	with mp.Pool(mp.cpu_count()) as pool:
 		p = pool.imap(gist._gist_extract,img_list)
 		gist_feature = list(tqdm(p, total = len(img_list)))
-	return np.array(gist_feature[0])
+	return np.array(gist_feature)
 
 def main(input_path, output_path):
 	data = Dataloader(input_path,output_path)
