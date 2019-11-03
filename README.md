@@ -23,7 +23,7 @@ __2. Use GIST-feature extractor__
   
 
 Change these parameters if necessary.
-```python
+```python:main.py
 param = {
         "orientationsPerScale":np.array([8,8,8]),
          "numberBlocks":10,
@@ -40,12 +40,12 @@ Specifies an image name or a folder path containing several images and output pa
 Let's extracting GIST-feature !!  
 The following is an example.
 
-```
+```sh
 $ python main.py image_name.png feature_list/gist.feather
 ```
 or
 
-```
+```sh
 $ python main.py image_list feature_list/gist.feather
 ```
 
