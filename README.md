@@ -10,15 +10,19 @@ The folloing liblaries are required to be installed
 - pillow
 
 ## Usage
-
+  
 __1. Installation__
+
 ```
 $ git clone https://github.com/imoken1122/GIST-feature-extractor.git
 ```
 
-__2. Use GIST-feature extractor__
+<br>
 
-Change these parameters if necessary and specify the path where the image is located.
+__2. Use GIST-feature extractor__
+  
+
+Change these parameters if necessary.
 ```python
 param = {
         "orientationsPerScale":np.array([8,8,8]),
@@ -28,9 +32,11 @@ param = {
         
 }
 ```
+<br>
 
 Specifies an image name or a folder path containing several images as command line argument and output path saving extracted gist-feature. (__Extention of output file is feather__)
   
+<br>
 Let's extracting GIST-feature !!  
 The following is an example.
 
