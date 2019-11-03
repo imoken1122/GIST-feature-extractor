@@ -34,7 +34,7 @@ param = {
 ```
 <br>
 
-Specifies an image name or a folder path containing several images as command line argument and output path saving extracted gist-feature. (__Extention of output file is feather__)
+Specifies an image name or a folder path containing several images and output path saving extracted gist-feature as command line argument. (__Extention of output file is feather__)
   
 <br>
 Let's extracting GIST-feature !!  
