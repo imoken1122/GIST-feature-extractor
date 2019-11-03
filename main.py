@@ -14,18 +14,31 @@ param = {
         "fc_prefilt":10,
         "boundaryExtension": 10
 }
-def _get_filelist(file_name, is_dir = True):
-	if is_dir:
-		# dirctory in images
-		path = f"./image_list/{file_name}/"
-		a = sorted(os.listdir(path))
-		file_list = list(map(lambda x: path + x, a))
+class Dataloader():
+	def __init__(self,input_path, output_path):
+		self.input_path = input_path
+		self.output_path = output_path
+		self.is_dir = 0 if re.search("\.",input_path) != None else 1
 
-		return file_list
-	else:
-		# image file such png, jpg etc..
-		path = f"./{file_name}"
-		return [path]
+	def get_inputfile(self):
+		if self.is_dir:
+			# dirctory in images
+			path = f"./{self.input_path}/"
+			a = sorted(os.listdir(path))
+			file_list = list(map(lambda x: path + x, a))
+
+			return file_list
+		else:
+			# image file such png, jpg etc..
+			path = f"./{self.input_path}"
+			return [path]
+	def save_feature(self,x:np.array):
+		if self.is_dir:
+			gist_df = pd.DataFrame(x, columns = [f"gist_{i}" for i in range(len(x))])
+		else:
+			gist_df = pd.DataFrame(x.reshape(1,-1), columns = [f"gist_{i}" for i in range(len(x))])
+
+		gist_df.to_feather(f"./{self.output_path}")	
 
 def _get_gist(param,file_list):
 	img_list = list(map(lambda f :np.array(Image.open(f).convert("L")), file_list))
@@ -36,16 +49,14 @@ def _get_gist(param,file_list):
 		gist_feature = list(tqdm(p, total = len(img_list)))
 	return np.array(gist_feature[0])
 
-def main(file_name):
-	is_dir = 0 if re.search("\.",file_name) != None else 1
-
-	file_list = _get_filelist(file_name, is_dir = is_dir)
+def main(input_path, output_path):
+	data = Dataloader(input_path,output_path)
+	file_list = data.get_inputfile()
 	gist_feature = _get_gist(param,file_list)
 	print(gist_feature.shape)
-	gist_df = pd.DataFrame(np.array(gist_feature), columns = [f"gist_{i}" for i in range(len(gist_feature))])
-	gist_df.to_feather("output path")
+	data.save_feature(gist_feature)
 
 if __name__ == "__main__":
 	arg = sys.argv
 	
-	main(arg[1])
+	main(arg[1], arg[2])
