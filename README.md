@@ -3,6 +3,9 @@ This repository is a reimplementation Matlab code implemented in this paper [Mod
 
 __Images that can be used in this repository are still only grayscale images. (W × H × 1)__
 
+![top-page](https://raw.githubusercontent.com/imoken1122/GIST-feature-extractor/img/explain.png)
+
+
 ## Prerequisites
 The folloing liblaries are required to be installed 
 - Python 3.6
