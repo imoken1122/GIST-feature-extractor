@@ -4,7 +4,6 @@ import numpy.fft as f
 from PIL import Image
 
 
-
 class GIST():
     def __init__(self,param):
         self.param = param
