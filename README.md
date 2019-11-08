@@ -25,8 +25,8 @@ __2. Use GIST-feature extractor__
 Change these parameters if necessary.
 ```python:main.py
 param = {
-        "orientationsPerScale":np.array([8,8,8]),
-         "numberBlocks":10,
+        "orientationsPerScale":np.array([8,8]),
+         "numberBlocks":[10,10],
         "fc_prefilt":10,
         "boundaryExtension": 10
         
@@ -34,19 +34,23 @@ param = {
 ```
 <br>
 
-Specifies an image name or a folder path containing several images and output path saving extracted gist-feature as command line argument. (__Extention of output file is feather__)
-  
+Specifies an image name or a folder path containing several images and output path saving extracted gist-feature as option (__Extention of output file is ".feather"__)
+```
+--input_path <your path>
+--output_path <your path>
+
+```
 <br>
 Let's extracting GIST-feature !!  
 The following is an example.
 
 ```sh
-$ python main.py image_name.png feature_list/gist.feather
+$ python main.py --input_path image_name.png --output_path gist.feather
 ```
 or
 
 ```sh
-$ python main.py image_list feature_list/gist.feather
+$ python main.py --input_path image_list --output_path gist.feather
 ```
 
 
