@@ -2,6 +2,9 @@ import numpy as np
 import numpy.matlib as nm
 import numpy.fft as f
 from PIL import Image
+
+
+
 class GIST():
     def __init__(self,param):
         self.param = param
@@ -11,14 +14,12 @@ class GIST():
         gabor_param = []
         Nscalse = len(orr)
         Nfilters = sum(orr)
-
         if len(n) == 1:
-            n = [n[0],[0]]
+            n = [n[0],n[0]]
         for i in range(Nscalse):
             for j in range(orr[i]):
                 gabor_param.append([.35,.3/(1.85**(i)),16*orr[i]**2/32**2, np.pi/(orr[i])*(j)])
         gabor_param = np.array(gabor_param)
-
         fx, fy = np.meshgrid(np.arange(-n[1]/2,n[1]/2-1 + 1), np.arange(-n[0]/2, n[0]/2-1 + 1))
         fr = f.fftshift(np.sqrt(fx**2+fy**2))
         t = f.fftshift(np.angle(fx+ 1j*fy))
@@ -27,7 +28,6 @@ class GIST():
         for i in range(Nfilters):
             tr = t + gabor_param[i,3]
             tr+= 2*np.pi*(tr < -np.pi) - 2 * np.pi*(tr>np.pi)
-            a = np.exp(-10*gabor_param[i,0]*(fr/n[1]/gabor_param[i,1]-1)**2-2*gabor_param[i,2]*np.pi*tr**2)
             G[:,:,i] = np.exp(-10*gabor_param[i,0]*(fr/n[1]/gabor_param[i,1]-1)**2-2*gabor_param[i,2]*np.pi*tr**2)
 
         return G
@@ -52,11 +52,11 @@ class GIST():
         sc = (nc-M[1])/2
 
         img = img[int(sr):int(sr+M[0])+ 1,int(sc):int(sc+M[1])+1]
-        img = img- np.min(img[:])
-        img = 255*(img/np.max(img[:]))
+        img = img- np.min(img)
+        if np.sum(img) != 0:
+            img = 255*(img/np.max(img))
 
         return img
-
 
 
     def _prefilt(self,img):
@@ -92,7 +92,7 @@ class GIST():
         G = self.param["G"]
         be = self.param["boundaryExtension"]
         ny,nx,Nfilters = G.shape
-        W = w * w
+        W = w[0] * w[1]
         N = 1
         g = np.zeros((W*Nfilters, N))
         img = np.pad(img,[be,be],"symmetric")
@@ -108,11 +108,11 @@ class GIST():
         return np.array(g)
         
     def _downN(self,x,N):
-        nx = list(map(int,np.floor(np.linspace(0,x.shape[0],N+1))))
-        ny = list(map(int,np.floor(np.linspace(0,x.shape[1],N+1))))
-        y  = np.zeros((N,N))
-        for xx in range(N):
-            for yy in range(N):
+        nx = list(map(int,np.floor(np.linspace(0,x.shape[0],N[0]+1))))
+        ny = list(map(int,np.floor(np.linspace(0,x.shape[1],N[1]+1))))
+        y  = np.zeros((N[0],N[1]))
+        for xx in range(N[0]):
+            for yy in range(N[1]):
                 a = x[nx[xx]:nx[xx+1], ny[yy]:ny[yy+1]]
                 v = np.mean(np.mean(a,0))
                 y[xx,yy]=v
