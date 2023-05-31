@@ -1,7 +1,9 @@
 # GIST-feature-extractor
+
+[UnOfficial]
 This repository is a reimplementation Matlab code implemented in this paper [Modeling the shape of the scene: a holistic representation of the spatial envelope](http://people.csail.mit.edu/torralba/code/spatialenvelope/) in Python.
 
-__Images that can be used in this repository are still only grayscale images. (W × H × 1)__
+__Note : Images that can be used in this repository are only grayscale images and width >= height image. (W × H × 1)__
 
 ![top-page](https://raw.githubusercontent.com/imoken1122/GIST-feature-extractor/img/explain.png)
 
@@ -9,8 +11,9 @@ __Images that can be used in this repository are still only grayscale images. (W
 ## Prerequisites
 The folloing liblaries are required to be installed 
 - Python 3.6
-- Numpy
+- numpy
 - pillow
+- feather-format
 
 ## Usage
   

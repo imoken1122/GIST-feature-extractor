@@ -108,7 +108,7 @@ class GIST():
         
     def _downN(self,x,N):
         nx = list(map(int,np.floor(np.linspace(0,x.shape[0],N[0]+1))))
-        ny = list(map(int,np.floor(np.linspace(0,x.shape[1],N[1]+1))))
+        ny = list(map(int,np.floor(np.linspace(0,x.shape[1 ],N[1]+1))))
         y  = np.zeros((N[0],N[1]))
         for xx in range(N[0]):
             for yy in range(N[1]):
@@ -118,6 +118,10 @@ class GIST():
         return y
 
     def _gist_extract(self,img):
+
+        h,w=img.shape
+        if w < h:
+            raise ValueError("The input image must be a width >= height.")
 
         self._more_config(img)
 

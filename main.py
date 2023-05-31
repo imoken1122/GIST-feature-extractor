@@ -1,4 +1,4 @@
-from model.GIST import GIST
+from gist import GIST
 from tqdm import tqdm
 import sys
 import argparse
@@ -26,14 +26,14 @@ class Dataloader():
 	def get_inputfile(self) -> list:
 		if self.is_dir:
 			# dirctory in images
-			path = f"./{self.input_path}/"
+			path = f"{self.input_path}/"
 			a = sorted(os.listdir(path))
 			file_list = list(map(lambda x: path + x, a))
 
 			return file_list
 		else:
 			# image file such png, jpg etc..
-			path = f"./{self.input_path}"
+			path = f"{self.input_path}"
 			return [path]
 	def save_feature(self,x:np.array):
 		if self.is_dir:
