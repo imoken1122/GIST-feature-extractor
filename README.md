@@ -3,7 +3,7 @@
 [UnOfficial]
 This repository is a reimplementation Matlab code implemented in this paper [Modeling the shape of the scene: a holistic representation of the spatial envelope](http://people.csail.mit.edu/torralba/code/spatialenvelope/) in Python.
 
-__Note : Images that can be used in this repository are only grayscale images and width >= height image. (W × H × 1)__
+__Note : Images that can be used in this repository are only grayscale images. (W × H × 1)__
 
 ![top-page](https://raw.githubusercontent.com/imoken1122/GIST-feature-extractor/img/explain.png)
 

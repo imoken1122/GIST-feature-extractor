@@ -72,8 +72,10 @@ class GIST():
 
         if sn == sm:
             img = np.pad(img,[0,int(n-sn)],"symmetric")
-        else:
+        elif sn <= sm:
             img = np.pad(img,[0,int(n-sn)], "symmetric")[:,:sm]
+        else:
+            img = np.pad(img, [0, int(n - sm)], "symmetric")[sn - sm:]
 
         fx,fy = np.meshgrid(np.arange(-n/2,n/2-1 + 1),np.arange(-n/2,n/2-1 + 1))
         gf = f.fftshift((np.exp(-(fx**2+fy**2)/(s1**2))))
