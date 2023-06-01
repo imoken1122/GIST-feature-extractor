@@ -120,11 +120,7 @@ class GIST():
         return y
 
     def _gist_extract(self,img):
-
-        h,w=img.shape
-        if w < h:
-            raise ValueError("The input image must be a width >= height.")
-
+        
         self._more_config(img)
 
         img = self._preprocess(img)
