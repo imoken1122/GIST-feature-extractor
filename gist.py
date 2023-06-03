@@ -72,7 +72,7 @@ class GIST():
 
         if sn == sm:
             img = np.pad(img,[0,int(n-sn)],"symmetric")
-        elif sn <= sm:
+        elif sn < sm:
             img = np.pad(img,[0,int(n-sn)], "symmetric")[:,:sm + (1 if sm % 2 != 0 else 0)]
         else:
             img = np.pad(img, [0, int(n - sm)], "symmetric")[sn - sm:]
